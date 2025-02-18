@@ -118,7 +118,7 @@ wt_summarise_cam <- function(detect_data, raw_data, time_interval = "day",
         mutate(day = list(seq.Date({{start_col}}, {{end_col}}, by = "day"))) |>
         unnest(day) |>
         mutate(year = as.integer(format(day, "%Y"))) |>
-        select({{project_col}}, {{station_col}}, year, day)
+        select({{project_col}}, {{station_col}}, {{start_col}}, {{end_col}}, year, day) |>
     }
 
     if (any(c(is.na(x[[as_string(ensym(start_col))]]),
