@@ -93,7 +93,7 @@ wt_summarise_cam <- function(detect_data, raw_data, time_interval = "day",
       # Expand the time ranges into individual days of operation (smallest unit)
       x <- x |>
         group_by({{project_col}}, {{station_col}}) |>
-        mutate(day = list(seq.Date(start_date, end_date, by = "day"))) |>
+        mutate(day = list(seq.Date({{start_col}}, {{end_col}}, by = "day"))) |>
         unnest(day) |>
         mutate(year = as.integer(format(day, "%Y"))) |>
         select({{project_col}}, {{station_col}}, {{start_col}}, {{end_col}}, year, day) |>
@@ -107,21 +107,22 @@ wt_summarise_cam <- function(detect_data, raw_data, time_interval = "day",
         filter(image_fov == "WITHIN") |>
         group_by({{project_col}}, {{station_col}}, period) |>
         summarise(
-          start_date = as.Date(min({{date_time_col}})),
-          end_date = as.Date(max({{date_time_col}}))
+          {{start_col}} := as.Date(min({{date_time_col}})),
+          {{end_col}} := as.Date(max({{date_time_col}}))
         ) |>
         ungroup()
 
       # Expand the time ranges into individual days of operation (smallest unit)
       x <- x |>
         group_by({{project_col}}, {{station_col}}, period) |>
-        mutate(day = list(seq.Date(start_date, end_date, by = "day"))) |>
+        mutate(day = list(seq.Date({{start_col}}, {{end_col}}, by = "day"))) |>
         unnest(day) |>
         mutate(year = as.integer(format(day, "%Y"))) |>
         select({{project_col}}, {{station_col}}, year, day)
     }
 
-    if (any(c(is.na(x$start_date), is.na(x$end_date)))) {
+    if (any(c(is.na(x[[as_string(ensym(start_col))]]),
+              is.na(x[[as_string(ensym(end_col))]])))) {
       message("Parsing of image date time produced NAs, these will be dropped")
       x <- drop_na(x)
     }
