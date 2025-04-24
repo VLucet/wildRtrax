@@ -291,6 +291,7 @@ references:
   title: tuneR
   abstract: 'tuneR: Analysis of Music and Speech'
   notes: Imports
+  url: https://tuner.R-forge.R-project.org
   repository: https://CRAN.R-project.org/package=tuneR
   authors:
   - family-names: Ligges
