@@ -2,36 +2,27 @@
 % Please edit documentation in R/api.R
 \name{wt_location_photos}
 \alias{wt_location_photos}
-\title{Batch upload and download locations photos}
+\title{Batch download location photos}
 \usage{
-wt_location_photos(data, direction, dir)
+wt_location_photos(organization, output = NULL)
 }
 \arguments{
-\item{data}{When going up, provide the joining data for locations and visits}
+\item{organization}{Character; The Organization acronym from which photos are being downloaded}
 
-\item{direction}{Either "up" or "down"; if "up" need to supply the appropriate data to join to a location and / or visit}
-
-\item{dir}{Folder of images either going "up" or "down"}
+\item{output}{Character; Directory where location photos would be stored on your machine}
 }
 \value{
-When "down", a folder of images
+A folder of photos or an object containing the download information for said photos
 }
 \description{
-A two-way street to upload and download location photos
+Download location photos from an Organization
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 \dontrun{
 # Authenticate first:
 wt_auth()
-# When going up provide the folder of images and data for joining
-wt_location_photos(organization = 'ABMI', data = "/my/join/table",
-direction = "up", dir = "/my/dir/of/images")
-
-# When going down the directory where you want the files only
-wt_location_photos(organization = 'ABMI', direction = "down",
-dir = "/my/dir/to/download/images")
-
+wt_location_photos(organization = 'ABMI', output = NULL)
 }
 
 }

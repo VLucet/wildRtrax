@@ -23,7 +23,7 @@ This function calculates statistical offsets that account for survey-specific an
 }
 \examples{
 \dontrun{
-devtools::install_github("borealbirds/QPAD")
+remotes::install_github("borealbirds/QPAD")
 
 dat.clean <- wt_tidy_species(dat)
 dat.tmtt <- wt_replace_tmtt(dat.clean)

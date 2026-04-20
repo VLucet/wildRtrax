@@ -4,7 +4,7 @@
 \alias{wt_kaleidoscope_tags}
 \title{Convert Kaleidoscope output to tags}
 \usage{
-wt_kaleidoscope_tags(input, output, freq_bump = T)
+wt_kaleidoscope_tags(input, output = NULL, freq_bump = TRUE)
 }
 \arguments{
 \item{input}{Character; The path to the input csv}
@@ -21,7 +21,7 @@ A csv formatted as a WildTrax tag template
 }
 \examples{
 \dontrun{
-wt_kaleidoscope_tags(input = input.csv, output = tags.csv, freq_bump = T)
+wt_kaleidoscope_tags(input = input.csv, output = tags.csv, freq_bump = TRUE)
 }
 
 }

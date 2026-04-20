@@ -19,7 +19,8 @@ wt_summarise_cam(
   start_col = start_date,
   end_col = end_date,
   detection_id_col = detection,
-  start_col_det = start_time
+  start_col_det = start_time,
+  image_set_id = image_set_id
 )
 }
 \arguments{
@@ -52,6 +53,8 @@ wt_summarise_cam(
 \item{detection_id_col}{Defaults to \code{detection}. The column indicating the detection id}
 
 \item{start_col_det}{Defaults to \code{start_time}. The column indicating the start time of the independent detections}
+
+\item{image_set_id}{Defaults to \code{image_set_id}.}
 }
 \value{
 A dataframe summarising your camera data by location, time interval, and species.

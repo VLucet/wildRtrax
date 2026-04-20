@@ -7,7 +7,7 @@
 wt_additional_species(
   data,
   remove_species = TRUE,
-  threshold = 50,
+  threshold = 0.5,
   resolution = "task",
   format_to_tags = FALSE,
   output = NULL
@@ -16,7 +16,7 @@ wt_additional_species(
 \arguments{
 \item{data}{Output from the \code{wt_download_report()} function when you request the \code{main} and \code{birdnet} reports}
 
-\item{remove_species}{Logical; indicates whether species that are not allowed in the WildTrax project should be removed from the BirdNET report}
+\item{remove_species}{Logical; indicates whether species that are not allowed in the WildTrax project should be removed from the AI report}
 
 \item{threshold}{Numeric; the desired score threshold}
 
@@ -30,12 +30,12 @@ wt_additional_species(
 A tibble with the same fields as the \code{birdnet} report with the highest scoring detection for each new species detection in each recording.
 }
 \description{
-Check for species reported by BirdNET that the human listeners did not detect in our project.
+Check for species reported by BirdNET and HawkEars that the human listeners did not detect in our project.
 }
 \examples{
 \dontrun{
 data <- wt_download_report(project_id = 1144, sensor_id = "ARU",
-reports = c("main", "birdnet"), weather_cols = FALSE)
+reports = c("main", "ai"), weather_cols = FALSE)
 
 new <- wt_additional_species(data, remove_species = TRUE,
 threshold = 80, resolution="location")

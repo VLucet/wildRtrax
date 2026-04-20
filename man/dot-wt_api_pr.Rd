@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{.wt_api_pr}
 \alias{.wt_api_pr}
-\title{An internal function to handle generic POST requests to WildTrax API}
+\title{An internal function to handle generic POST requests to WildTrax}
 \usage{
 .wt_api_pr(path, ..., max_time = 300)
 }
@@ -11,7 +11,7 @@
 
 \item{...}{Argument to pass along into POST query}
 
-\item{max_time}{The maximum number of seconds an API request can take. By default 300.}
+\item{max_time}{The maximum number of seconds the API request can take. By default 300.}
 }
 \description{
 Generic function to handle certain POST requests

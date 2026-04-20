@@ -21,3 +21,4 @@ lab_presentation.Rmd
 ^doc$
 ^Meta$
 ^CITATION\.cff$
+^\.secrets$

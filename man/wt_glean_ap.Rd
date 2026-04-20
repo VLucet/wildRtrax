@@ -10,7 +10,7 @@ wt_glean_ap(
   purpose = c("quality", "abiotic", "biotic"),
   include_ind = TRUE,
   include_ldfcs = TRUE,
-  borders = F
+  borders = FALSE
 )
 }
 \arguments{

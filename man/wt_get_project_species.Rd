@@ -2,27 +2,21 @@
 % Please edit documentation in R/api.R
 \name{wt_get_project_species}
 \alias{wt_get_project_species}
-\title{Get project-species from WildTrax project}
+\title{Get the WildTrax species list for a specific project}
 \usage{
-wt_get_project_species(project_id)
+wt_get_project_species(project)
 }
 \arguments{
-\item{project_id}{The project_id of the WildTrax project}
+\item{project}{The project id associated with the desired species list}
 }
 \value{
-A data frame listing an Organizations' locations
+A tibble of the WildTrax species list for a specific project
 }
 \description{
-Obtain a table listing species added to a specific project in WildTrax
+Request for the WildTrax species list for a project
 }
 \examples{
-\dontrun{
-# Authenticate first:
-wt_auth()
-my_project <- wt_get_download_summary(sensor_id = 'ARU') |>
-filter(grepl('Ecosystem Health 2023',project)) |>
-pull(project_id)
-wt_get_project_species(project_id = my_project)
-}
-
+ \dontrun{
+ my_project_species <- wt_get_project_species()
+ }
 }

@@ -4,22 +4,14 @@
 \alias{wt_download_report}
 \title{Download formatted reports from WildTrax}
 \usage{
-wt_download_report(
-  project_id,
-  sensor_id,
-  reports,
-  weather_cols = TRUE,
-  max_seconds = 300
-)
+wt_download_report(project_id, sensor_id, reports, max_seconds = 300)
 }
 \arguments{
-\item{project_id}{Numeric; the project ID number that you would like to download data for. Use \code{wt_get_download_summary()} to retrieve these IDs.}
+\item{project_id}{Numeric; the project ID number that you would like to download data for. Use \code{wt_get_projects()} to retrieve these IDs.}
 
 \item{sensor_id}{Character; Can either be "ARU", "CAM", or "PC".}
 
 \item{reports}{Character; The report type to be returned. Multiple values are accepted as a concatenated string.}
-
-\item{weather_cols}{Logical; Do you want to include weather information for your stations? Defaults to TRUE.}
 
 \item{max_seconds}{Numeric; Number of seconds to force to wait for downloads.}
 }
@@ -36,10 +28,9 @@ Valid values for argument \code{report} when \code{sensor_id} = "CAM" currently 
 \item project
 \item location
 \item image_report
-\item image_set
+\item image_set_report
 \item tag
 \item megadetector
-\item megaclassifier
 \item definitions
 }
 
@@ -50,7 +41,7 @@ Valid values for argument \code{report} when \code{sensor_id} = "ARU" currently 
 \item location
 \item recording
 \item tag
-\item birdnet
+\item ai
 \item definitions
 }
 
@@ -68,12 +59,10 @@ Valid values for argument \code{report} when \code{sensor_id} = "PC" currently a
 # Authenticate first:
 wt_auth()
 a_camera_project <- wt_download_report(
-project_id = 397, sensor_id = "CAM", reports = c("tag", "image_set"),
-weather_cols = TRUE)
+project_id = 397, sensor_id = "CAM", reports = c("tag", "image_set_report"))
 
 an_aru_project <- wt_download_report(
-project_id = 47, sensor_id = "ARU", reports = c("main", "birdnet"),
-weather_cols = TRUE)
+project_id = 47, sensor_id = "ARU", reports = c("main", "ai"))
 }
 
 }

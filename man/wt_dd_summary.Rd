@@ -14,7 +14,7 @@ wt_dd_summary(sensor = c("ARU", "CAM", "PC"), species = NULL, boundary = NULL)
 \item{boundary}{The custom boundary you want to use. Must be a list of at least four latitude and longitude points where the last point is a duplicate of the first, or an object of class "bbox" (as produced by sf::st_bbox)}
 }
 \value{
-Return
+A list of two tibbles one from the map and the other from the data
 }
 \description{
 Download Data Discover results from projects across WildTrax

@@ -7,9 +7,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r echo=F, eval=F, message=TRUE, include=TRUE}
-
+```{r echo=F, eval=T, message=TRUE, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)
+
+load("camera.RData")
+#save.image("camera.RData")
 ```
 
 The use of camera traps in ecological studies has become increasingly popular for monitoring wildlife. Managing and analyzing camera trap data efficiently is important for extracting meaningful and accurate insights. In this vignette, we will explore how to perform camera data wrangling, specifically focusing on the ABMI's [Ecosystem Health 2014 data set](https://portal.wildtrax.ca/home/camera-deployments.html?sensorId=CAM&projectId=205).
@@ -17,19 +19,22 @@ The use of camera traps in ecological studies has become increasingly popular fo
 Use the `wt_download_report()` function to retrieve the main report for the CAM sensor in the Ecosystem Health 2014 project:
 
 ```{r, echo=TRUE, eval=FALSE, message=TRUE, include=TRUE}
-
 eh14_raw <- wt_download_report(
   project_id = 205, 
   sensor_id = "CAM",
-  report = "main", 
-  weather_cols = FALSE
+  report = "main"
 )
+
+```
+
+```{r, echo=TRUE, eval=T, message=TRUE, include=TRUE}
+head(eh14_raw)
 
 ```
 
 Evaluate **independent detections** with `wt_ind_detect()`:
 
-```{r echo=TRUE, eval=FALSE, message=TRUE, include=TRUE}
+```{r echo=TRUE, eval=F, message=TRUE, include=TRUE}
 
 # Back to the Ecosystem Health 2014 data.
 
@@ -43,13 +48,12 @@ eh14_detections <- wt_ind_detect(
 
 ```
 
-```{r echo=TRUE, eval=F, message=TRUE, include=TRUE}
-
-glimpse(eh14_detections, width = 75) 
+```{r echo=TRUE, eval=T, message=TRUE, include=TRUE}
+head(eh14_detections, width = 75) 
 
 ```
 
-**313** independent detections in this data set, when using a threshold of 30 minutes.
+So there are **313** independent detections in this data set, when using a threshold of 30 minutes.
 
 The output from `wt_ind_detect()` gave us some useful information. But we probably need to do additional wrangling for our data to be in the proper format for certain modeling techniques (e.g. habitat modeling, occupancy). For example, we want to evaluate the number of detections in a specified time interval (e.g. daily, weekly, or monthly), *including zeroes*. 
 
@@ -81,26 +85,8 @@ eh14_summarised <- wt_summarise_cam(
 
 ```
 
-## The ultimate pipeline
-
-```{r eval=FALSE, echo=TRUE, include=TRUE}
-library(wildrtrax)
-
-Sys.setenv(WT_USERNAME = "*****",
-           WT_PASSWORD = "*****")
-wt_auth()
-
-
-projects <- wt_get_download_summary("CAM") |>
-  filter(project == "ABMI Ecosystem Health 2014") |>
-  select(project_id) |>
-  pull()
-
-raw_data <- map_dfr(.x = projects, 
-                    .f = ~wt_download_report(.x, "CAM", weather_cols = F, reports = "main"))
-
-summarised <- wt_ind_detect(raw_data, 30, "minutes") |>
-  wt_summarise_cam(raw_data, "day", "detections", "long")
+```{r echo=TRUE, eval=T, message=TRUE, include=TRUE}
+head(eh14_summarised)
 
 ```
 

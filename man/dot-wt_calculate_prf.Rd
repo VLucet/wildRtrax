@@ -9,7 +9,7 @@
 \arguments{
 \item{threshold}{A single numeric value for score threshold}
 
-\item{data}{Output from the \code{wt_download_report()} function when you request the \code{main} and \code{birdnet} reports}
+\item{data}{Output from the \code{wt_download_report()} function when you request the \code{main} and \code{ai} reports}
 
 \item{human_total}{The total number of detections in the gold standard, typically from human listening data (e.g., the main report)}
 }

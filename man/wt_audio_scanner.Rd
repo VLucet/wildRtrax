@@ -4,20 +4,20 @@
 \alias{wt_audio_scanner}
 \title{Scan acoustic data to a standard format}
 \usage{
-wt_audio_scanner(path, file_type, extra_cols = F)
+wt_audio_scanner(path, file_type, extra_cols = FALSE)
 }
 \arguments{
-\item{path}{Character; The path to the directory with audio files you wish to scan. Can be done recursively.}
+\item{path}{Character; The path to the directory with audio files}
 
-\item{file_type}{Character; Takes one of four values: wav, wac, flac or all. Use "all" if your directory contains many types of files.}
+\item{file_type}{Character; File types of wav, wac, flac or all}
 
-\item{extra_cols}{Boolean; Default set to FALSE for speed. If TRUE, returns additional columns for file duration, sample rate and number of channels.}
+\item{extra_cols}{Boolean; TRUE returns duration, sample rate and channels}
 }
 \value{
 A tibble with a summary of your audio files.
 }
 \description{
-Scans directories of audio data and returns the standard naming conventions
+Scans directories of audio data
 }
 \examples{
 \dontrun{

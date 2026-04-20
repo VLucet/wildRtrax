@@ -7,12 +7,13 @@
 wt_songscope_tags(
   input,
   output = c("env", "csv"),
-  my_output_file = NULL,
-  species_code,
-  vocalization_type,
+  output_file = NULL,
+  species,
+  vocalization,
   score_filter,
-  method = c("USPM", "1SPT"),
-  task_length
+  method = NULL,
+  duration,
+  sample_freq
 )
 }
 \arguments{
@@ -20,17 +21,19 @@ wt_songscope_tags(
 
 \item{output}{Character; Path where the output file will be stored}
 
-\item{my_output_file}{Character; Path of the output file}
+\item{output_file}{Character; Path of the output file}
 
-\item{species_code}{Character; Short-hand code for the species (see wt_get_species)}
+\item{species}{Character; Short-hand code for the species (see \code{wt_get_species()})}
 
-\item{vocalization_type}{Character; The vocalization type from either Song, Call, Non-Vocal, Night flight and Feeding Buzz}
+\item{vocalization}{Character; The vocalization type from either Song, Call, Non-Vocal, Nocturnal flight call and Feeding Buzz}
 
-\item{score_filter}{Numeric; Filter the detections by score}
+\item{score_filter}{Numeric; Filter the detections by a score threshold}
 
 \item{method}{Character; Include options from 1SPT, 1SPM or None}
 
-\item{task_length}{Numeric; length of the task in seconds}
+\item{duration}{Numeric; length of the task in seconds}
+
+\item{sample_freq}{Numeric; The sampling frequency in Hz of the recording}
 }
 \value{
 A csv formatted as a WildTrax tag template
